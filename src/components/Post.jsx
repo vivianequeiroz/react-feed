@@ -21,11 +21,11 @@ export function Post() {
       </header>
 
       <div className={styles.content}>
-        <p>Fala galeraa 👋</p>
+        <p>Hello everyone!👋</p>
 
         <p>
-          Acabei de subir mais um projeto no meu portifa. É um projeto que fiz
-          no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare 🚀
+          I just uploaded another project to my portfolio. It's a project I did
+          at NLW Return, a Rocketseat event. Project name is DoctorCare 🚀
         </p>
 
         <p>
@@ -33,11 +33,17 @@ export function Post() {
         </p>
 
         <p>
-          <a href="#">#novoprojeto</a> {""}
+          <a href="#">#newproject</a> {""}
           <a href="#">#nlw</a> {""}
           <a href="#">#rocketseat</a>
         </p>
       </div>
+
+      <form className={styles.commentForm}>
+        <strong>Leave a comment</strong>
+        <textarea placeholder="Leave a comment"></textarea>
+        <button type="submit">Publish</button>
+      </form>
     </article>
   );
 }
