@@ -28,6 +28,14 @@ export function Post({ author, publishedAt, content, id }) {
     setNewCommentText(event.target.value);
   }
 
+  function deleteComment(commentToDelete) {
+    const newCommentsAfterDelete = comments.filter((comment) => {
+      return comment !== commentToDelete;
+    });
+
+    setComments(newCommentsAfterDelete);
+  }
+
   const publishedDateRelativeToNow = formatDistanceToNow(publishedAt, {
     locale: ptBR,
     addSuffix: true,
@@ -80,7 +88,13 @@ export function Post({ author, publishedAt, content, id }) {
 
       <div className={styles.commentList}>
         {comments.map((comment) => {
-          return <Comment key={comment} content={comment} />;
+          return (
+            <Comment
+              key={comment}
+              content={comment}
+              onDeleteComment={deleteComment}
+            />
+          );
         })}
       </div>
     </article>
