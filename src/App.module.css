@@ -7,3 +7,13 @@
   gap: 2rem;
   align-items: flex-start; /* avoid stretch applied by default */
 }
+
+@media (max-width:768px) {
+  html {
+    font-size: 87%;
+  }
+  
+  .wrapper {
+    grid-template-columns: 1fr;
+  }
+}
