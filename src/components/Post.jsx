@@ -8,6 +8,7 @@ import styles from "./Post.module.css";
 
 export function Post({ author, publishedAt, content, id }) {
   const [comments, setComments] = useState(["Great post!"]);
+  const [newCommentText, setNewCommentText] = useState("");
 
   const publishDateFormatted = format(
     publishedAt,
@@ -19,7 +20,12 @@ export function Post({ author, publishedAt, content, id }) {
 
   function handleCreateNewComment() {
     event.preventDefault();
-    setComments([...comments, comments.length++]);
+    setComments([...comments, newCommentText]);
+    setNewCommentText("");
+  }
+
+  function handleNewCommentChange() {
+    setNewCommentText(event.target.value);
   }
 
   const publishedDateRelativeToNow = formatDistanceToNow(publishedAt, {
@@ -66,7 +72,11 @@ export function Post({ author, publishedAt, content, id }) {
 
       <form onSubmit={handleCreateNewComment} className={styles.commentForm}>
         <strong>Leave a comment</strong>
-        <textarea placeholder="Leave a comment"></textarea>
+        <textarea
+          value={newCommentText}
+          placeholder="Leave a comment"
+          onChange={handleNewCommentChange}
+        ></textarea>
         <footer>
           <button type="submit">Publish</button>
         </footer>
