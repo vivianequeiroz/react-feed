@@ -4,6 +4,7 @@ import styles from "./App.module.css";
 import { Header } from "./components/Header";
 import { Post } from "./components/Post";
 import { Sidebar } from "./components/Sidebar";
+import React from "react";
 
 const posts = [
   {
@@ -85,6 +86,7 @@ function App() {
                 author={post.author}
                 content={post.content}
                 publishedAt={post.publishedAt}
+                id={post.id}
               />
             );
           })}
