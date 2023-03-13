@@ -18,6 +18,8 @@ export function Post({ author, publishedAt, content, id }) {
     }
   );
 
+  const isNewCommentEmpty = newCommentText.length === 0;
+
   function handleCreateNewComment() {
     event.preventDefault();
     setComments([...comments, newCommentText]);
@@ -25,6 +27,7 @@ export function Post({ author, publishedAt, content, id }) {
   }
 
   function handleNewCommentChange() {
+    event.target.setCustomValidity("");
     setNewCommentText(event.target.value);
   }
 
@@ -34,6 +37,10 @@ export function Post({ author, publishedAt, content, id }) {
     });
 
     setComments(newCommentsAfterDelete);
+  }
+
+  function handleNewCommentInvalid() {
+    event.target.setCustomValidity("Conteúdo do campo inválido!");
   }
 
   const publishedDateRelativeToNow = formatDistanceToNow(publishedAt, {
@@ -80,9 +87,13 @@ export function Post({ author, publishedAt, content, id }) {
           value={newCommentText}
           placeholder="Leave a comment"
           onChange={handleNewCommentChange}
+          required
+          onInvalid={handleNewCommentInvalid}
         ></textarea>
         <footer>
-          <button type="submit">Publish</button>
+          <button disabled={isNewCommentEmpty} type="submit">
+            Publish
+          </button>
         </footer>
       </form>
 
